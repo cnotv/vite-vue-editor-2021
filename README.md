@@ -2,6 +2,8 @@
 
 The project is a simple editor based on a pre-existing static JSON data.
 
+[Demo](https://cnotv-vite-vue-editor-2021.netlify.app/)
+
 ## Stack
 
 The project is based on Vue 3 (using functional components), bundled with Vite and typed with Typescript.
