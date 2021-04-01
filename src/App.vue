@@ -1,18 +1,32 @@
 <template>
-  <Left />
-  <Right />
+  <Editor
+    class="left"
+    :blocks="data"
+    :isDeletable="true"
+  />
+  <Editor
+    class="right"
+    :blocks="data"
+    :isDeletable="false"
+    :canFocus="true"
+  />
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Left from "./components/Left.vue";
-import Right from "./components/Right.vue";
+import Editor from "./components/Editor.vue";
+import data from "./assets/data/VueChallenge2021.json";
+import { DataText } from "./models/data-text.interface";
 
 export default defineComponent({
   name: "App",
   components: {
-    Left,
-    Right,
+    Editor,
+  },
+  data() {
+    return {
+      data: data as DataText[],
+    };
   },
 });
 </script>
@@ -38,5 +52,13 @@ body {
   gap: 2px;
 
   background-color: #217485;
+}
+
+.left {
+  background-color: #18262B;
+}
+
+.right {
+  background-color: #0F1C1F;
 }
 </style>
