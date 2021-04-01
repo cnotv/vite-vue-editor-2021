@@ -46,6 +46,7 @@ $border-size: 3px;
   margin-left: $border-size;
   position: relative;
   flex-grow: 1;
+  transition: background-color 250ms, box-shadow 250ms;
 
   &--focused {
     background-color: #ece2d9;

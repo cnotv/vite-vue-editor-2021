@@ -24,7 +24,7 @@ $btn-bg-color: #2f3a3d;
   height: $button-size;
   padding: 0;
   cursor: pointer;
-  transition: background-color 200ms;
+  transition: background-color 250ms;
 
   &:hover {
     background-color: lighten($btn-bg-color, 3%);
