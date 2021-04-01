@@ -2,8 +2,14 @@
   <div class="text-block__wrapper">
     <div class="text-block" :class="{ 'text-block--focused': isFocused }">
       <div class="text-block__content">
-        <div class="text-block__char">{{ char }}</div>
-        <div class="text-block__text">{{ text }}</div>
+        <div
+          :contenteditable="isEditable"
+          class="text-block__char"
+        >{{ char }}</div>
+        <div
+          :contenteditable="isEditable"
+          class="text-block__text"
+        >{{ text }}</div>
       </div>
     </div>
     <DelButton v-if="isDeletable" />
@@ -29,6 +35,9 @@ export default defineComponent({
       type: Boolean,
     },
     isFocused: {
+      type: Boolean,
+    },
+    isEditable: {
       type: Boolean,
     },
   },
@@ -72,6 +81,13 @@ $border-size: 3px;
   &__char {
     text-transform: uppercase;
     text-align: center;
+  }
+
+  &__char,
+  &__text {
+    &:focus {
+      outline: none;
+    }
   }
 }
 </style>

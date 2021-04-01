@@ -7,6 +7,7 @@
       :text="block.Text"
       :isDeletable="isDeletable"
       :isFocused="canFocus && selected === i"
+      :isEditable="isEditable"
       @click="focus(i)"
     />
   </BaseLayout>

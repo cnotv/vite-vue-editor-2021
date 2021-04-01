@@ -8,6 +8,7 @@
     class="right"
     :blocks="data"
     :isDeletable="false"
+    :isEditable="true"
     :canFocus="true"
   />
 </template>
