@@ -3,7 +3,7 @@
     <TextBlock
       v-for="(block, i) in blocks"
       v-bind:key="i"
-      :isFocused="canFocus && selected === i"
+      :isFocused="focused === i || selected === i"
       @click="onFocus(i)"
     >
       <template #char>
@@ -42,7 +42,7 @@ export default defineComponent({
     TextBlock,
     DelButton
   },
-  emits: ['delete', 'update'],
+  emits: ['delete', 'update', 'focus'],
   props: {
     isEditable: {
       type: Boolean,
@@ -52,6 +52,9 @@ export default defineComponent({
     },
     canFocus: {
       type: Boolean,
+    },
+    focused: {
+      type: Number,
     },
     blocks: {
       type: Object as DataText[],
@@ -64,9 +67,14 @@ export default defineComponent({
   },
   methods: {
     onFocus(i: number) {
+      if (!this.canFocus) {
+        return;
+      }
+
       this.selected = i;
+      this.$emit('focus', i);
     },
-    onInput(value: string, i: number, target: 'Character' | 'Text') {
+    onInput(value: string, i: number, target: keyof DataText) {
       this.$emit('update', {value, i, target});
     },
     onDelete(i: number) {
