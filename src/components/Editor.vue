@@ -9,13 +9,13 @@
       <template #char>
         <div
           :contenteditable="isEditable"
-          @input="onInput($event, i, 'Character')"
+          @input="onInput($event.target.innerText, i, 'Character')"
         >{{ block.Character }}</div>
       </template>
       <template #text>
         <div
           :contenteditable="isEditable"
-          @input="onInput($event, i, 'Text')"
+          @input="onInput($event.target.innerText, i, 'Text')"
         >{{ block.Text }}</div>
       </template>
       <template #delete>
@@ -66,9 +66,9 @@ export default defineComponent({
     onFocus(i: number) {
       this.selected = i;
     },
-    onInput(e: HTMLElement, i: number, target: 'char' | 'text') {
+    onInput(value: string, i: number, target: 'Character' | 'Text') {
       const blocks = this.blocks;
-      blocks[i][target] = e.target.innerText;
+      blocks[i][target] = value;
       this.$emit('update', blocks);
     },
     onDelete(i: number) {
