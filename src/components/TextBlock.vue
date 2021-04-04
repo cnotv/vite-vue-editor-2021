@@ -56,6 +56,7 @@ $border-size: 3px;
     width: 292px;
     padding: 6px;
     margin: 0 auto;
+    word-wrap: break-word;
   }
 
   &__char {
