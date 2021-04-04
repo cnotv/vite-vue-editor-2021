@@ -50,6 +50,7 @@ $border-size: 3px;
   &__wrapper {
     display: flex;
     gap: 10px;
+    align-items: center;
   }
 
   &__content {
