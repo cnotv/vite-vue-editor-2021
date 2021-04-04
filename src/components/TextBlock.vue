@@ -2,47 +2,27 @@
   <div class="text-block__wrapper">
     <div class="text-block" :class="{ 'text-block--focused': isFocused }">
       <div class="text-block__content">
-        <div
-          :contenteditable="isEditable"
-          class="text-block__char"
-        >{{ char }}</div>
-        <div
-          :contenteditable="isEditable"
-          class="text-block__text"
-        >{{ text }}</div>
+        <div class="text-block__char">
+          <slot name="char"></slot>
+        </div>
+        <div class="text-block__text">
+          <slot name="text"></slot>
+        </div>
       </div>
     </div>
-    <DelButton v-if="isDeletable" />
+    <slot name="delete"></slot>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import DelButton from './../components/DelButton.vue'
 
 export default defineComponent({
   name: "TextBlock",
   props: {
-    char: {
-      type: String,
-      required: true,
-    },
-    text: {
-      type: String,
-      required: true,
-    },
-    isDeletable: {
-      type: Boolean,
-    },
     isFocused: {
       type: Boolean,
     },
-    isEditable: {
-      type: Boolean,
-    },
-  },
-  components: {
-    DelButton
   },
 });
 </script>
