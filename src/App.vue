@@ -33,7 +33,7 @@ export default defineComponent({
   },
   methods: {
     update(data: DataText[]) {
-      this.data = [...data]
+      this.data = data
     }
   }
 });

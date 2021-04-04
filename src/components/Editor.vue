@@ -9,13 +9,13 @@
       <template #char>
         <div
           :contenteditable="isEditable"
-          @input="onInput($event, i, 'char')"
+          @input="onInput($event, i, 'Character')"
         >{{ block.Character }}</div>
       </template>
       <template #text>
         <div
           :contenteditable="isEditable"
-          @input="onInput($event, i, 'text')"
+          @input="onInput($event, i, 'Text')"
         >{{ block.Text }}</div>
       </template>
       <template #delete>
