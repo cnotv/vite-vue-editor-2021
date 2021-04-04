@@ -42,7 +42,7 @@ export default defineComponent({
     TextBlock,
     DelButton
   },
-  emits: ['update'],
+  emits: ['delete', 'update'],
   props: {
     isEditable: {
       type: Boolean,
@@ -67,13 +67,11 @@ export default defineComponent({
       this.selected = i;
     },
     onInput(value: string, i: number, target: 'Character' | 'Text') {
-      const blocks = this.blocks;
-      blocks[i][target] = value;
-      this.$emit('update', blocks);
+      this.$emit('update', {value, i, target});
     },
     onDelete(i: number) {
       const blocks = this.blocks.filter((x: DataText, index: number) => index !== i)
-      this.$emit('update', blocks);
+      this.$emit('delete', blocks);
     }
   }
 })

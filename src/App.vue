@@ -1,17 +1,17 @@
 <template>
   <Editor
     class="left"
-    :blocks="data"
+    :blocks="left"
     :isDeletable="true"
-    @update="update($event)"
+    @delete="onDelete($event)"
   />
   <Editor
     class="right"
-    :blocks="data"
+    :blocks="right"
     :isDeletable="false"
     :isEditable="true"
     :canFocus="true"
-    @update="update($event)"
+    @update="onUpdate($event)"
   />
 </template>
 
@@ -28,12 +28,21 @@ export default defineComponent({
   },
   data() {
     return {
-      data: data as DataText[],
+      left: data as DataText[],
+      right: data as DataText[],
     };
   },
   methods: {
-    update(data: DataText[]) {
-      this.data = data
+    onDelete(data: DataText[]) {
+      this.left = data
+      this.right = data;
+    },
+    onUpdate({value, i, target}) {
+      const block = {
+        ...this.left[i],
+        [target]: value
+      };
+      this.left = this.left.map((x, index) => index === i ? block : x);
     }
   }
 });
