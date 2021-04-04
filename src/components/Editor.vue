@@ -4,20 +4,25 @@
       v-for="(block, i) in blocks"
       v-bind:key="i"
       :isFocused="canFocus && selected === i"
-      @click="focus(i)"
+      @click="onFocus(i)"
     >
       <template #char>
         <div
           :contenteditable="isEditable"
+          @input="onInput($event, i, 'char')"
         >{{ block.Character }}</div>
       </template>
       <template #text>
         <div
           :contenteditable="isEditable"
+          @input="onInput($event, i, 'text')"
         >{{ block.Text }}</div>
       </template>
       <template #delete>
-        <DelButton v-if="isDeletable" />
+        <DelButton
+          v-if="isDeletable"
+          @click="onDelete(i)"
+        />
       </template>
     </TextBlock>
   </BaseLayout>
@@ -37,6 +42,7 @@ export default defineComponent({
     TextBlock,
     DelButton
   },
+  emits: ['update'],
   props: {
     isEditable: {
       type: Boolean,
@@ -57,8 +63,17 @@ export default defineComponent({
     };
   },
   methods: {
-    focus(i: number) {
+    onFocus(i: number) {
       this.selected = i;
+    },
+    onInput(e: HTMLElement, i: number, target: 'char' | 'text') {
+      const blocks = this.blocks;
+      blocks[i][target] = e.target.innerText;
+      this.$emit('update', blocks);
+    },
+    onDelete(i: number) {
+      const blocks = this.blocks.filter((x: DataText, index: number) => index !== i)
+      this.$emit('update', blocks);
     }
   }
 })

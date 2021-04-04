@@ -3,6 +3,7 @@
     class="left"
     :blocks="data"
     :isDeletable="true"
+    @update="update($event)"
   />
   <Editor
     class="right"
@@ -10,6 +11,7 @@
     :isDeletable="false"
     :isEditable="true"
     :canFocus="true"
+    @update="update($event)"
   />
 </template>
 
@@ -29,6 +31,11 @@ export default defineComponent({
       data: data as DataText[],
     };
   },
+  methods: {
+    update(data: DataText[]) {
+      this.data = [...data]
+    }
+  }
 });
 </script>
 
