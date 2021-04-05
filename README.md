@@ -3,14 +3,69 @@
 The project is a simple editor based on a pre-existing static JSON data.
 
 [Demo](https://cnotv-vite-vue-editor-2021.netlify.app/)
+[Design](https://www.figma.com/file/wg830mRe3fCMeOqGZJXWrd/Front-End-Dev-Interview-Task?node-id=0%3A1)
+
+![demo preview](./demo.png)
+
+- [Stack](#stack)
+- [Tasks](#tasks)
+- [Feedback](#feedback)
+  - [Project state](#project-state)
+  - [Time](#time)
+  - [Complexity](#complexity)
+- [Recommended IDE Setup](#recommended-ide-setup)
+  - [If Using `<script setup>`](#if-using-script-setup)
+- [Type Support For `.vue` Imports in TS](#type-support-for-vue-imports-in-ts)
+  - [If Using Volar](#if-using-volar)
+  - [If Using Vetur](#if-using-vetur)
 
 ## Stack
 
 The project is based on Vue 3 (using functional components), bundled with Vite and typed with Typescript.
 
-The choice is done as preference to FP, fast builder but also goal of the Vue founder, as well as type driven code to increase code quality.
+The choice is done due founder goal for the future use, so it's meant to not be refactored in the very near future.
+
+## Tasks
+
+- Left: 
+  - [x] All blocks have read-only fields
+  - [x] There is an icon right of each block, clicking it will remove the block from the view, and stack the blocks again.
+- Right:
+  - [x] All fields of all blocks are editable. The user can left click inside any field of any block and edit its contents.
+  - [x] Mouse clicking inside the area of a block (including the text fields) results in highlighting the block. Only one block can be highlighted at any moment.
+
+- Extras:
+  - [x] Removing a block from the left view, results in removing the corresponding block from the right view.
+  - [x] Edit the contents of a field in a block in the right view results in updating the corresponding field in the left view.
+  - [x] Optionally highlighting a block in the right view results in highlighting the corresponding block in the left view (This should be controlled by a flag that’s easy to set in the code or by any visual element of choice. E.g.: a check box).
+
+## Feedback
+
+### Project state
+
+Beside completing all the tasks, the project has some Typescript issues for the AoT on build. Tests are also incorrectly configured, but a sample test has been also provided.
+
+The use of Vuex as state management has not been introduced, given the triviality of the task and also to show simpler component communication, as it may be done in smaller abstracted modules.
+
+### Time
+
+The whole task has been taking roughly **6h** of time.
+
+Most of the initial development has been done mainly in the initial **2-3 hours**.
+
+The remaining part has been spent half with a refactoring and bidirectional binding of the input/buttons to the data. The other half has been spent in setup configuration, which has however been left incomplete for a matter of time.
+
+### Complexity
+
+To return back to a Vue.js project has been admittedly taking me some time, still not too much, as I also have already existing project which I could have been checking out.
+
+The setup issue, however, has been some more challenging due the introduction of different tools without a pre-existing working configuration.
+
+The last complication has been due the issues with the type, as I must admit to be quite different from what I am used to in React and Angular.
 
 ## Recommended IDE Setup
+
+*(From the template)*
 
 [VSCode](https://code.visualstudio.com/) + [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur). Make sure to enable `vetur.experimental.templateInterpolationService` in settings!
 
